@@ -1,0 +1,13 @@
+@import "./phoenix.css";
+
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+/* Custom Tailwind Components */
+
+@layer components {
+  .btn-indigo {
+    @apply bg-indigo-500 text-white font-bold py-1 px-3 rounded;
+  }
+}
