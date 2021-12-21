@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+# Exit on error
+set -o errexit
+
+# Source environmental variables
+set -a && source .env && set +a
+
+# Install deps
+npm install --prefix ./assets
+mix deps.get --only prod
+
+# Initial compile
+MIX_ENV=prod mix compile
+
+# Web asset deploy
+MIX_ENV=prod mix assets.deploy
+
+# Migrate the database
+MIX_ENV=prod mix ecto.migrate
+
+# Build the release and overwrite the existing release directory
+MIX_ENV=prod mix release our_home --overwrite

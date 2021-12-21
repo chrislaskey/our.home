@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+# Exit on error
+set -o errexit
+
+# Source environmental variables
+set -a && source .env && set +a
+
+VERSION=$(bin/app-version)
+
+sudo docker image build -t our_home:latest -t our_home:${VERSION} .

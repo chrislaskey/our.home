@@ -1,4 +1,4 @@
-## Setup Steps
+## Setup
 
 ```bash
 mix phx.new our_home --database sqlite3

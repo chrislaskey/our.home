@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+# Use mix task to return config value
+set -a && source .env && set +a && mix app.version | tail -n 1
+
+# NOTE: an alternative is to use bash to parse file:
+#
+#     cat mix.exs | grep version | sed -e 's/.*version: "\(.*\)",/\1/'

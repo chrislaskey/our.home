@@ -36,6 +36,8 @@ npm-debug.log
 *.db
 *.db-*
 
-/data/*.*
+/data/*.db
+/data/*.db-shm
+/data/*.db-wal
 
 .env

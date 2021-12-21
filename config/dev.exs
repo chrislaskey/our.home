@@ -2,8 +2,8 @@ import Config
 
 # Configure your database
 config :our_home, OurHome.Repo,
-  database: Path.expand("../data/our_home.dev.db", Path.dirname(__ENV__.file)),
-  pool_size: 5,
+  database: System.get_env("OUR_HOME_DATABASE_PATH"),
+  pool_size: String.to_integer(System.get_env("OUR_HOME_DATABASE_POOL_SIZE")),
   show_sensitive_data_on_connection_error: true
 
 # For development, we disable any cache and enable
@@ -15,11 +15,11 @@ config :our_home, OurHome.Repo,
 config :our_home, OurHomeWeb.Endpoint,
   # Binding to loopback ipv4 address prevents access from other machines.
   # Change to `ip: {0, 0, 0, 0}` to allow access from other machines.
-  http: [ip: {127, 0, 0, 1}, port: 4000],
+  http: [ip: {0, 0, 0, 0}, port: System.get_env("OUR_HOME_PORT")],
   check_origin: false,
   code_reloader: true,
   debug_errors: true,
-  secret_key_base: "soBmBh6GtnG/F/CahB7XqSqe9IFHQBNVax71fVIc/ZX74pqWx1BhQq2D+Dui5gRn",
+  secret_key_base: System.get_env("OUR_HOME_SECRET_KEY_BASE"),
   watchers: [
     # Start the esbuild watcher by calling Esbuild.install_and_run(:default, args)
     esbuild: {Esbuild, :install_and_run, [:default, ~w(--sourcemap=inline --watch)]},

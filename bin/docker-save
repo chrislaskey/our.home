@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+# Exit on error
+set -o errexit
+
+# Source environmental variables
+set -a && source .env && set +a
+
+VERSION=$(bin/app-version)
+
+sudo docker save our_home:${VERSION} > builds/our_home-${VERSION}.tar
+
+# Alternative: Output a gzipped version
+#
+#     sudo docker save our_home:${VERSION} | gzip > builds/our_home-${VERSION}.tar.gz

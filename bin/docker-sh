@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+# Exit on error
+set -o errexit
+
+# Source environmental variables
+set -a && source .env && set +a
+
+sudo docker container run --rm -it --entrypoint "" -p 127.0.0.1:4000:4000 our_home sh

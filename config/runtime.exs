@@ -11,15 +11,15 @@ config :our_home, OurHome.Drivers.PiholeApi, auth_token: System.get_env("PIHOLE_
 
 if config_env() == :prod do
   database_path =
-    System.get_env("DATABASE_PATH") ||
+    System.get_env("OUR_HOME_DATABASE_PATH") ||
       raise """
-      environment variable DATABASE_PATH is missing.
+      environment variable OUR_HOME_DATABASE_PATH is missing.
       For example: /etc/our_home/our_home.db
       """
 
   config :our_home, OurHome.Repo,
     database: database_path,
-    pool_size: String.to_integer(System.get_env("POOL_SIZE") || "5")
+    pool_size: String.to_integer(System.get_env("OUR_HOME_DATABASE_POOL_SIZE") || "5")
 
   # The secret key base is used to sign/encrypt cookies and other secrets.
   # A default value is used in config/dev.exs and config/test.exs but you
@@ -27,9 +27,9 @@ if config_env() == :prod do
   # to check this value into version control, so we use an environment
   # variable instead.
   secret_key_base =
-    System.get_env("SECRET_KEY_BASE") ||
+    System.get_env("OUR_HOME_SECRET_KEY_BASE") ||
       raise """
-      environment variable SECRET_KEY_BASE is missing.
+      environment variable OUR_HOME_SECRET_KEY_BASE is missing.
       You can generate one by calling: mix phx.gen.secret
       """
 
@@ -42,7 +42,12 @@ if config_env() == :prod do
       ip: {0, 0, 0, 0, 0, 0, 0, 0},
       port: String.to_integer(System.get_env("PORT") || "4000")
     ],
-    secret_key_base: secret_key_base
+    url: [
+      host: System.get_env("OUR_HOME_DOMAIN"),
+      port: System.get_env("OUR_HOME_PORT")
+    ],
+    secret_key_base: secret_key_base,
+    server: true
 
   # ## Using releases
   #
