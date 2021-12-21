@@ -22,6 +22,10 @@ You can also run your app inside IEx (Interactive Elixir) as:
 
 Then follow [Mike Clark's guide to adding Tailwind CSS](https://pragmaticstudio.com/tutorials/adding-tailwind-css-to-phoenix).
 
+**Elixir Releases / Docker**
+
+Create a `release.ex` file: https://hexdocs.pm/phoenix/releases.html#ecto-migrations-and-custom-commands
+
 ## Usage
 
 To start your Phoenix server:

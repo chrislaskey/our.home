@@ -25,7 +25,7 @@ ENV MIX_ENV="${MIX_ENV}"
 # to ensure any relevant config change will trigger the dependencies
 # to be re-compiled.
 COPY mix.exs mix.lock ./
-COPY config/config.exs config/$MIX_ENV.exs config/custom.exs config/
+COPY config/config.exs config/$MIX_ENV.exs config/
 RUN mix deps.get --only $MIX_ENV
 RUN mix deps.compile
 
@@ -51,8 +51,10 @@ RUN mix compile
 # Changes to config/runtime.exs don't require recompiling the code
 COPY config/runtime.exs config/
 
-# uncomment COPY if rel/ exists
-# COPY rel rel
+# COPY rel/ (comment out if it doesn't exist)
+COPY rel rel
+
+# Create release
 RUN mix release
 
 # =============================================================================== #
@@ -74,7 +76,7 @@ ARG OUR_HOME_DATABASE_POOL_SIZE
 ENV OUR_HOME_DATABASE_POOL_SIZE=5
 
 ARG OUR_HOME_DATABASE_PATH
-ENV OUR_HOME_DATABASE_PATH=/app/data/our_home.prod.db
+ENV OUR_HOME_DATABASE_PATH=/home/elixir/app/data/our_home.prod.db
 
 ARG OUR_HOME_SECRET_KEY_BASE
 ENV OUR_HOME_SECRET_KEY_BASE=mgRkBeyntabuFKhFbHC3rUWiitMBM1Y8OCqBi8xKt1vedZYnVRV/h3RHYy1HF4W6
@@ -100,7 +102,7 @@ USER "${USER}"
 
 # Create directories
 RUN mkdir -p "/home/${USER}/app/code" && \
-    mkdir -p "/home/${USER}/app/data" && \
+    mkdir -p "/home/${USER}/app/data"
 
 # Copy release from `build` container and set entrypoint
 COPY --from=build --chown="${USER}":"${USER}" /app/_build/"${MIX_ENV}"/rel/our_home ./code/

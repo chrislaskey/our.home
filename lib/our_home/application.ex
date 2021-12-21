@@ -7,6 +7,8 @@ defmodule OurHome.Application do
 
   @impl true
   def start(_type, _args) do
+    OurHome.Release.create_and_migrate_and_seed_data_stores()
+
     children = [
       # Start the Ecto repository
       OurHome.Repo,
