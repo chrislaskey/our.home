@@ -90,6 +90,9 @@ defmodule OurHomeWeb do
       import OurHomeWeb.ErrorHelpers
       import OurHomeWeb.Gettext
       alias OurHomeWeb.Router.Helpers, as: Routes
+
+      # Import custom view helpers
+      import OurHomeWeb.IconHelpers
     end
   end
 

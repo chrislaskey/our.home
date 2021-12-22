@@ -20,7 +20,7 @@ defmodule OurHome.Pihole do
   end
 
   @doc """
-  Enable
+  Enable adblocker
   """
   def enable() do
     OurHome.Drivers.PiholeApi.action("enable")

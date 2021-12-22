@@ -29,3 +29,7 @@ Start the server:
 ```bash
 bin/start
 ```
+
+## Acknowledgements
+
+- [House icon by Vandelay Design](https://www.iconfinder.com/icons/2903201/house_love_icon)

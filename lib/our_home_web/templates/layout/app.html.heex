@@ -1,3 +1,5 @@
-<p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
-<p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+<%= unless Map.get(@conn.assigns, :live_module) do %>
+  <%= render "_flash.html", Map.put(assigns, :flash, get_flash(@conn)) %>
+<% end %>
+
 <%= @inner_content %>

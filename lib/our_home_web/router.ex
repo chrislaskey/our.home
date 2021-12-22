@@ -17,7 +17,9 @@ defmodule OurHomeWeb.Router do
   scope "/", OurHomeWeb do
     pipe_through :browser
 
-    get "/", PageController, :index
+    get "/", HomeController, :index
+
+    post "/", AdblockerController, :create
   end
 
   # Other scopes may use custom stacks.
