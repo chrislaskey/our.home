@@ -7,7 +7,9 @@ import Config
 # any compile-time configuration in here, as it won't be applied.
 # The block below contains prod specific runtime configuration.
 
-config :our_home, OurHome.Drivers.PiholeApi, auth_token: System.get_env("PIHOLE_API_AUTH_TOKEN")
+config :our_home, OurHome.Drivers.PiholeApi,
+  auth_token: System.get_env("PIHOLE_API_AUTH_TOKEN"),
+  domain: System.get_env("PIHOLE_API_DOMAIN")
 
 if config_env() == :prod do
   database_path =

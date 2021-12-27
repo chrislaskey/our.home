@@ -1,12 +1,12 @@
 <%= if Map.get(assigns, :flash) do %>
   <%= if Map.get(@flash, "error") do %>
     <a href="#" id="flash-error" class="flash mb-2 p-1 pr-3 group flex justify-between items-center" role="alert" phx-click="lv:clear-flash" phx-value-key="error" phx-hook="FlashMessage">
-      <div class="flex items-center">
-        <div class="mr-2 pl-1.5 pr-2.5 py-1 flex items-center font-bold text-xs border-2 border-rose-300 text-rose-700 bg-rose-100 opacity-50 uppercase rounded-full tracking-wider">
+      <div class="flex">
+        <div class="h-7 mr-2 pl-1.5 pr-2.5 py-1 flex items-center font-bold text-xs border-2 border-rose-300 text-rose-700 bg-rose-100 opacity-50 uppercase rounded-full tracking-wider">
           <%= icon(:exclamation_circle, class: "h-5 w-5 mr-1 text-rose-600") %>
           error
         </div>
-        <div class="text-gray-500 text-lg">
+        <div class="text-gray-500">
           <%= live_flash(@flash, :error) %>
         </div>
       </div>
@@ -20,12 +20,12 @@
 
   <%= if Map.get(@flash, "info") do %>
     <a href="#" id="flash-info" class="flash mb-2 p-1.5 pr-3 group flex justify-between rounded-full items-center" role="alert" phx-click="lv:clear-flash" phx-value-key="info" phx-hook="FlashMessage">
-      <div class="flex items-center">
-        <div class="mr-2 pl-1.5 pr-2.5 py-1 flex items-center font-bold text-xs border-2 border-amber-300 text-amber-700 bg-amber-100 opacity-50 uppercase rounded-full tracking-wider">
+      <div class="flex">
+        <div class="h-7 mr-2 pl-1.5 pr-2.5 py-1 flex items-center font-bold text-xs border-2 border-amber-300 text-amber-700 bg-amber-100 opacity-50 uppercase rounded-full tracking-wider">
           <%= icon(:exclamation_circle, class: "h-5 w-5 mr-1 text-amber-600") %>
           info
         </div>
-        <div class="text-gray-500 text-lg">
+        <div class="text-gray-500 mt-0.5">
           <%= live_flash(@flash, :info) %>
         </div>
       </div>
@@ -39,12 +39,12 @@
 
   <%= if Map.get(@flash, "success") do %>
     <a href="#" id="flash-success" class="flash mb-2 p-1 pr-3 group flex justify-between items-center" role="alert" phx-click="lv:clear-flash" phx-value-key="success" phx-hook="FlashMessage">
-      <div class="flex items-center">
-        <div class="mr-2 pl-1.5 pr-2.5 py-1 flex items-center font-bold text-xs border-2 border-emerald-300 text-emerald-700 bg-emerald-100 opacity-50 uppercase rounded-full tracking-wider">
+      <div class="flex">
+        <div class="h-7 mr-2 pl-1.5 pr-2.5 py-1 flex items-center font-bold text-xs border-2 border-emerald-300 text-emerald-700 bg-emerald-100 opacity-50 uppercase rounded-full tracking-wider">
           <%= icon(:exclamation_circle, class: "h-5 w-5 mr-1 text-emerald-600") %>
           success
         </div>
-        <div class="text-gray-500 text-lg">
+        <div class="text-gray-500">
           <%= live_flash(@flash, :success) %>
         </div>
       </div>

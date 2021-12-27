@@ -1,0 +1,45 @@
+<%= case @adblocker.status do %>
+  <% "enabled" -> %>
+    <div class="my-3 flex justify-between">
+      <div>
+        <div class="text-bold text-xl leading-none">Ad Blocker</div>
+        <div class="-mt-0.5 flex items-center">
+          <div class="h-2 w-2 mt-x mr-1 rounded-full bg-emerald-600 opacity-50"></div>
+          <div class="opacity-70">enabled</div>
+        </div>
+      </div>
+
+      <%= form_for :adblocker, Routes.adblocker_path(@conn, :create), fn f -> %>
+        <%= hidden_input f, :action, value: "disable" %>
+        <%= hidden_input f, :time, value: "1800" %>
+        <%= submit "Disable", class: "h-10 w-22 flex justify-center items-center border-2 rounded border-rose-300 text-rose-700 bg-rose-100 opacity-50 uppercase font-bold text-xs tracking-wider hover:opacity-80" %>
+      <% end %>
+    </div>
+
+  <% "disabled" -> %>
+    <div class="my-3 flex justify-between">
+      <div>
+        <div class="text-bold text-xl leading-none">Ad Blocker</div>
+        <div class="-mt-0.5 flex items-center">
+          <div class="h-2 w-2 mt-x mr-1 rounded-full bg-rose-600 opacity-50"></div>
+          <div class="opacity-70">disabled</div>
+        </div>
+      </div>
+
+      <%= form_for :adblocker, Routes.adblocker_path(@conn, :create), fn f -> %>
+        <%= hidden_input f, :action, value: "enable" %>
+        <%= submit "Enable", class: "h-10 w-22 flex justify-center items-center border-2 rounded border-emerald-300 text-emerald-700 bg-emerald-100 opacity-50 uppercase font-bold text-xs tracking-wider hover:opacity-80" %>
+      <% end %>
+    </div>
+
+  <% _ -> %>
+    <div class="my-3 flex justify-between">
+      <div>
+        <div class="text-bold text-xl leading-none">Ad Blocker</div>
+        <div class="-mt-0.5 flex items-center">
+          <div class="h-2 w-2 mt-x mr-1 rounded-full bg-gray-300"></div>
+          <div class="opacity-70">offline</div>
+        </div>
+      </div>
+    </div>
+<% end %>
