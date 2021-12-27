@@ -40,4 +40,6 @@ npm-debug.log
 /data/*.db-shm
 /data/*.db-wal
 
+builds/*.tar
+
 .env
