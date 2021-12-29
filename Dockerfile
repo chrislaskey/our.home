@@ -3,7 +3,7 @@ ARG MIX_ENV="prod"
 # =============================================================================== #
 # Build
 # =============================================================================== #
-FROM hexpm/elixir:1.12.1-erlang-24.1.1-alpine-3.13.5 as build
+FROM elixir:1.12-alpine as build
 
 # Install sytem and build dependencies
 RUN apk add --no-cache build-base git python3 curl npm
@@ -64,7 +64,13 @@ RUN mix release
 # Start a new build stage so that the final image will only contain
 # the compiled release and other runtime necessities
 FROM node:16-alpine AS app
-RUN apk add --no-cache libstdc++ openssl ncurses-libs bash ffmpeg chromium
+
+RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/main" > /etc/apk/repositories \
+    && echo "http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories \
+    && echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories \
+    && echo "http://dl-cdn.alpinelinux.org/alpine/v3.12/main" >> /etc/apk/repositories \
+    && apk upgrade -U -a \
+    && apk add --no-cache libstdc++ openssl ncurses-libs bash ffmpeg
 
 # Setup App environment
 ENV USER="elixir"
